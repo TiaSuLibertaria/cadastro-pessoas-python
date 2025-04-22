@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Web</title>
+    <style>
+        body { font-family: Arial; background: #f9f9f9; padding: 20px; }
+        h1 { color: #333; }
+        input { padding: 5px; margin: 5px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        a { color: red; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Pessoas</h1>
+    <form action="/add" method="post">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="number" name="idade" placeholder="Idade" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr><th>ID</th><th>Nome</th><th>Idade</th><th>Ações</th></tr>
+        </thead>
+        <tbody>
+            {% for pessoa in pessoas %}
+                <tr>
+                    <td>{{ pessoa.id }}</td>
+                    <td>{{ pessoa.nome }}</td>
+                    <td>{{ pessoa.idade }}</td>
+                    <td><a href="/delete/{{ pessoa.id }}">Excluir</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
